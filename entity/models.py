@@ -5,6 +5,12 @@ from django.db import models
 
 
 class Entity(TimeStampedModel):
+    """
+    Entity Model extended from the abstract TimeStampedModel
+    which provides fields `created` and `modified` to store
+    timestamps of creation and modification of the instance.
+    """
+
     name = models.CharField(max_length=255, null=False, blank=False)
     image_url = models.URLField(null=False)
     width = models.PositiveIntegerField(null=False)
