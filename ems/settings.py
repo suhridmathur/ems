@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Your Apps #
     'entity',
     'utils',
+    'search',
 ]
 
 MIDDLEWARE = [
