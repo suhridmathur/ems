@@ -15,7 +15,7 @@ class Entity(TimeStampedModel):
     image_url = models.URLField(null=False)
     width = models.PositiveIntegerField(null=False)
     height = models.PositiveIntegerField(null=False)
-    tags = ArrayField(models.CharField(max_length=200), blank=True)
+    tags = ArrayField(models.CharField(max_length=200), blank=False, null=False)
 
     def __str__(self):
         return f"Entity with name: {self.name} with tags: {self.tags}"

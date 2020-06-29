@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Third Party Apps #
     'rest_framework',
+    'drf_yasg',
 
     # Your Apps #
     'entity',
@@ -92,11 +93,18 @@ DATABASES = {
     }
 }
 
+
+# ElasticSearch #
 ELASTICSEARCH_CONFIG = {
     'HOST': os.getenv('ELASTICSEARCH_HOST'),
     'PORT': os.getenv('ELASTICSEARCH_PORT')
 }
 
+# Rest Framework #
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

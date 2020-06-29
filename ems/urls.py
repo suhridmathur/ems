@@ -16,10 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+from rest_framework import permissions
+
 from entity import urls as entity_urls
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="EMS APIs",
+        default_version="v1",
+        description="Set of APIs for Entity Mangementment & Search",
+        contact=openapi.Contact("mathursuhrid@gmail.com"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger_schema_api'),
     path('', include(entity_urls)),
 ]
