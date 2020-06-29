@@ -5,6 +5,10 @@ from elasticsearch import Elasticsearch
 from utils.base import Singleton
 
 class SearchService(metaclass=Singleton):
+    """
+    SearchService: Singleton class to be used for making
+    elasticsearch requests.
+    """
     @property
     def index_name(self):
         return 'entity'
