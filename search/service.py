@@ -43,3 +43,34 @@ class SearchService(metaclass=Singleton):
             }
         }
         return self.es.search(index=self.index_name, body=dsl_query)
+
+    def auto_complete(self, field_name, value, sort_by="created", order="desc"):
+        """
+        Performs boolean search.
+        Searches using fuzzy search & prefix search.
+        """
+        dsl_query = {
+            "query": {
+                "bool": {
+                    "should": [
+                        {
+                            "fuzzy": {
+                                field_name: {
+                                    "value": value,
+                                    "fuzziness": 7,
+                                    "prefix_length": 0,
+                                    "max_expansions": 50,
+                                }
+                            }
+                        },
+                        {
+                            "prefix": {
+                                field_name: value
+                            }
+                        },
+                    ],
+                    "minimum_should_match": 1,
+                }
+            }
+        }
+        return self.es.search(index=self.index_name, body=dsl_query)

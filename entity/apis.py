@@ -43,3 +43,11 @@ class MultiTagSearchAPI(views.APIView):
 
         result = SearchService().multi_term_search("tags.keyword", tags)
         return Response(result["hits"]["hits"])
+
+
+class AutoCompleteApi(views.APIView):
+    def get(self, request, *args, **kwargs):
+        tag = kwargs.get("tag")
+
+        result = SearchService().auto_complete("tags.keyword", tag)
+        return Response(result["hits"]["hits"])
