@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     # Your Apps #
     'entity',
+    'utils',
+    'search',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +92,11 @@ DATABASES = {
     }
 }
 
+ELASTICSEARCH_CONFIG = {
+    'HOST': os.getenv('ELASTICSEARCH_HOST'),
+    'PORT': os.getenv('ELASTICSEARCH_PORT')
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -128,3 +135,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Celery #
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+
+CELERY_ACCEPT_CONTENT = ["json"]
+
+CELERY_TASK_SERIALIZER = "json"
+
+CELERY_IGNORE_RESULT = True
