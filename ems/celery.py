@@ -9,6 +9,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ems.settings")
 
 app = Celery("ems")
 
+app.conf.task_queues = TASK_QUEUES
+app.conf.task_routes = TASK_ROUTES
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

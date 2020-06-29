@@ -22,4 +22,8 @@ class SearchService(metaclass=Singleton):
     def index_document(self, document):
         result = self.es.index(self.index_name, body=document)
         return result
+
+    def index_document_with_id(self, id, document):
+        result = self.es.index(self.index_name, id=id, body=document)
+        return result
         
