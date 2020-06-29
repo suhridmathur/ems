@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Your Apps #
     'entity',
+    'utils',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,11 @@ DATABASES = {
         'HOST': os.getenv('EMS_DB_HOST'),
         'PORT': os.getenv('EMS_DB_PORT'),
     }
+}
+
+ELASTICSEARCH_CONFIG = {
+    'HOST': os.getenv('ELASTICSEARCH_HOST'),
+    'PORT': os.getenv('ELASTICSEARCH_PORT')
 }
 
 
